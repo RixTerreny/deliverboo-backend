@@ -15,15 +15,10 @@ class CategoriesTableSeeder extends Seeder
     {
         $categories=['giapponese','pizza','vegetariano','dessert','americano','kebab','italiano','poke','messicano', 'indiano'];
         foreach ($categories as $category) {
-            $newCategory = new Category();
-            $newCategory->name = $category['name'];
-            $newCategory->save();
-
-
             Category::create([
                 "name" => $category 
             ]);
         }
-        }
     }
 }
+
