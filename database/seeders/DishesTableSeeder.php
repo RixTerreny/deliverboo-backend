@@ -30,7 +30,6 @@ class DishesTableSeeder extends Seeder
                 'price' => '4.00',
                 'id_restaurant' => "1"
             ],
-            
         ];
 
         foreach ($dishes as $dish) {
