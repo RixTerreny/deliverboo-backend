@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\Crud\UserController;
+use App\Http\Controllers\Auth\crud\UserController;
 use App\Http\Controllers\Crud\RestaurantController;
 
 /*
