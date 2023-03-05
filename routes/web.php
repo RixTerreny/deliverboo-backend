@@ -15,8 +15,6 @@ use App\Http\Controllers\Crud\RestaurantController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::resource('restaurants', RestaurantController::class); 
 Route::get('/', function () {
     return view('welcome');
 });
@@ -24,6 +22,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+
+Route::resource('restaurants', RestaurantController::class);
 
 Route::middleware('auth')->group(function () {
     Route::resource('user', UserController::class); 
