@@ -62,9 +62,9 @@ class RegisteredUserController extends Controller
         ]);
 
 
-        if ($request->has("id_category")) {
-            $restaurant->categories()->attach($request["id_category[]"]);
-        }
+        
+        $restaurant->categories()->attach($request->id_category);
+        
 
         event(new Registered($user,$restaurant));
 
