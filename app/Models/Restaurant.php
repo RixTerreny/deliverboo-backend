@@ -11,8 +11,8 @@ class Restaurant extends Model
 {
     use HasFactory;
     protected $fillable=[
-        "name","address","photo","vat","user_id"
-        
+        "name","address","vat","user_id"
+
     ];
     public function categories(){
         return $this->belongsToMany(Category::class);
