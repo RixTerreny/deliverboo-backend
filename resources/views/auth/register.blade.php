@@ -112,14 +112,17 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+
+                        <div class="text-center my-3">Scegli le Categorie</div>
+
                         @foreach ($categories as $category)
                         <div class="form-check form-check-inline @error('id_category') is-invalid @enderror">
                             {{-- Il name dell'input ha come suffisso le quadre [] che indicheranno al server,
                             di creare un array con i vari tag che stiamo inviando --}}
                             <input class="form-check-input @error('id_category') is-invalid @enderror" type="checkbox"
-                                id="technologiesCheckbox_{{ $loop->index }}" value="{{ $category->id }}" name="id_category[]" {{
+                                id="categoriesCheckbox_{{ $loop->index }}" value="{{ $category->id }}" name="id_category[]" {{
                                 in_array($category->id, old('id_category', [])) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="technologiesCheckbox_{{ $loop->index }}">{{ $category->name}}</label>
+                            <label class="form-check-label" for="categoriesCheckbox_{{ $loop->index }}">{{ $category->name}}</label>
                         </div>
                         @endforeach
                         <div class="mb-4 row mb-0">
@@ -129,7 +132,7 @@
                                 </button>
                             </div>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
