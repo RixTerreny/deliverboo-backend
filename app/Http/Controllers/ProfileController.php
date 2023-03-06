@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\Crud\UserController;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +21,11 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+       
         return view('profile.edit', [
             'user' => $request->user(),
+           
+            
         ]);
     }
 
