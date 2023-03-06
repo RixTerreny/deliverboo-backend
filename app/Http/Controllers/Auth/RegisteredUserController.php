@@ -38,12 +38,11 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],       
-            'photo' => ["file","nullable"],       
-            'user_id' => ["int","required","exists:users,id"],       
+            'address' => ['required', 'string', 'max:255'],             
+            'user_id' => ["nullable|exists:users,id"],       
             'restaurant_name' => ['required', 'string', 'max:255'],       
             'vat' => ['required', 'Numeric', "digits_between:11,11"],
-            'id_category' => ["array","required","exists:categories,id"],
+            'id_category' => ["array","nullable","exists:categories,id"],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -60,21 +59,17 @@ class RegisteredUserController extends Controller
             'vat' => $request->vat,
             'address' => $request->address,
             'user_id' => $user->id,
-            'category' => $request->user->id,
-         
         ]);
-        if ($request->has("id_category[]")) {
-           
+
+
+        if ($request->has("id_category")) {
             $restaurant->categories()->attach($request["id_category[]"]);
         }
 
-        event(new Registered($user));
-      /*   event(new Restaurant($restaurant)); */
-
-        /* event(new Registered($restaurant)); */
+        event(new Registered($user,$restaurant));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME, compact($restaurant));
+        return redirect(RouteServiceProvider::HOME);
     }
 }
