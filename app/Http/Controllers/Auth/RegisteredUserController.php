@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Restaurant;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -20,7 +22,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $categories = Category::all();
+        
+        return view('auth.register',compact("categories"));
     }
 
     /**
@@ -30,9 +34,15 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        /* dd(Auth::id()); */
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'lastname' => ['nullable', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],             
+            'user_id' => ["nullable|exists:users,id"],       
+            'restaurant_name' => ['required', 'string', 'max:255'],       
+            'vat' => ['required', 'Numeric', "digits_between:11,11"],
+            'id_category' => ["array","nullable","exists:categories,id"],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -43,8 +53,20 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        
+        $restaurant = Restaurant::create([
+            'name' => $request->restaurant_name,
+            'vat' => $request->vat,
+            'address' => $request->address,
+            'user_id' => $user->id,
+        ]);
 
-        event(new Registered($user));
+
+        if ($request->has("id_category")) {
+            $restaurant->categories()->attach($request["id_category[]"]);
+        }
+
+        event(new Registered($user,$restaurant));
 
         Auth::login($user);
 

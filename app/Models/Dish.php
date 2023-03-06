@@ -15,7 +15,7 @@ class Dish extends Model
         
     ];
 
-    public function posts(){
+    public function orders(){
         return $this->belongsToMany(Order::class);
     }
     public function restaurants() {
