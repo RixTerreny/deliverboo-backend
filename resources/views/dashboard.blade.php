@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h2 class="fs-4 text-secondary my-4">
-        Benvenuto ... {{--{{ $user->name }}--}}
+        Benvenuto {{ Auth::user()->name }}
     </h2>
     <div class="row justify-content-center">
         <div class="col">
