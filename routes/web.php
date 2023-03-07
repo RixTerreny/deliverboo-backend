@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\crud\UserController;
 use App\Http\Controllers\Crud\RestaurantController;
+use App\Http\Controllers\Auth\crud\DishController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,9 @@ Route::get('/dashboard', function () {
 Route::resource('restaurants', RestaurantController::class);
 
 Route::middleware('auth')->group(function () {
-    Route::resource('user', UserController::class); 
-    
-    
+    Route::resource('user', UserController::class);
+    Route::resource('dish', DishController::class); 
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
