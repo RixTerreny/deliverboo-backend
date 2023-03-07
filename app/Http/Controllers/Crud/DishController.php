@@ -44,7 +44,7 @@ class DishController extends Controller
             'description' => $request->description,
             'id_restaurant' => 2,
             'visible' => $request->visible,
-            'rice' => $request->rice,
+            'price' => $request->price,
         ]);
 
         return redirect()->route('dish.index');
