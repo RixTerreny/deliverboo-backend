@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Crud;
 use App\Http\Controllers\Controller;
 use App\Models\Dish;
 use Illuminate\Http\Request;
+use App\Models\Restaurant;
+use Illuminate\Support\Facades\Auth;
 
 class DishController extends Controller
 {
@@ -31,6 +33,8 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = Auth::id();
+        $restaurant_id = Restaurant::where("user_id", $user_id); 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'text'],
@@ -38,16 +42,16 @@ class DishController extends Controller
             'visible' => ['required', 'boolean'],       
             'price' => ['required', 'float'],
         ]);
-
+        
         $dish = Dish::create([
             'name' => $request->name,
             'description' => $request->description,
-            'id_restaurant' => 2,
+            'id_restaurant' => $restaurant_id,
             'visible' => $request->visible,
             'price' => $request->price,
         ]);
 
-        return redirect()->route('dish.index');
+        return redirect()->route('dish.index' ,compact("dish"));
     }
 
     /**
