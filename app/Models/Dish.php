@@ -11,8 +11,8 @@ class Dish extends Model
 {
     use HasFactory;
     protected $fillable=[
-        "name","description","price","visible","image"
-        
+        // fix id restaurant beccato da tomas
+        "name","description","price","visible","image","id_restaurant"
     ];
 
     public function orders(){

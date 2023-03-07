@@ -34,24 +34,26 @@ class DishController extends Controller
     public function store(Request $request)
     {
         $user_id = Auth::id();
-        $restaurant_id = Restaurant::where("user_id", $user_id); 
+
+        $restaurant_id = Restaurant::where("user_id", $user_id)->first();
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'text'],
-            'id_restaurant' => ["nullable|exists:restaurants,id"],       
-            'visible' => ['required', 'boolean'],       
-            'price' => ['required', 'float'],
+            'description' => ['required', 'string'],
+            'id_restaurant' => ["nullable|exists:id,restaurants"],       
+            'visible' => ['nullable', 'boolean'],       
+            'price' => ['required', 'string'],
         ]);
-        
+
         $dish = Dish::create([
             'name' => $request->name,
             'description' => $request->description,
-            'id_restaurant' => $restaurant_id,
+            'id_restaurant' => $restaurant_id->id,
             'visible' => $request->visible,
             'price' => $request->price,
         ]);
 
-        return redirect()->route('dish.index' ,compact("dish"));
+        return redirect()->route('dashboard' ,compact("dish"));
     }
 
     /**

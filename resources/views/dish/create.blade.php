@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Add Dish') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('dish.store') }}">
                         @csrf
 
                         <div class="mb-4 row">
@@ -51,7 +51,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="mb-4 row">
+                        {{-- <div class="mb-4 row">
                             <label for="image" class="col-md-4 col-form-label text-md-right custom-file-label">{{ __('Image') }}</label>
 
                             <div class="col-md-6">
@@ -63,14 +63,14 @@
                                 </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="mb-4 row">
                             <label for="visible" class="col-md-4 col-form-label text-md-right">{{ __('Visible') }}</label>
 
                             <div class="col-md-6">
                                 {{-- <input  id="visible" type="text" class="form-control @error('visible') is-invalid @enderror" name="visible" value="{{ old('visible') }}" required autocomplete="visible" autofocus> --}}
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                    <input value="1" name="visible" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                                 </div>
                                 @error('visible')
                                 <span class="invalid-feedback" role="alert">
