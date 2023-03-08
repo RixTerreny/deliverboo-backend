@@ -11,7 +11,7 @@ class RestautantController extends Controller
 
         public function index(){
 
-            $restaurants = Restaurant::with("user_id")->get();
+            $restaurants = Restaurant::with("user")->get();
 
             
             return response()->json([
