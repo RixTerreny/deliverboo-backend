@@ -11,9 +11,11 @@ class DishController extends Controller
 {
     public function index($id){
         $dish = Dish::where('id_restaurant', $id)->get();
+        $restaurant = Restaurant::where('id', $id)->get();
 
         return response()->json([
             "dish" => $dish,
+            "restaurant" => $restaurant,
         ]);
     }
 }
