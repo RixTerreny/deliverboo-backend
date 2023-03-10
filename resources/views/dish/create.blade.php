@@ -16,7 +16,7 @@
 
                             <div class="col-md-6">
                                 <input  id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                                <span id="err-name"></span>
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -30,7 +30,7 @@
                             <div class="col-md-6">
                                 {{-- <input  id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus> --}}
                                 <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror" value="{{ old('description') }}" rows="3"></textarea>
-
+                                <span id="err-descr"></span>
                                 @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -43,7 +43,7 @@
 
                             <div class="col-md-6">
                                 <input  id="price" type="text" class="form-control @error('address') is-invalid @enderror" name="price" value="{{ old('price') }}" required autocomplete="price" autofocus>
-
+                                <span id="err-price"></span>
                                 @error('price')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -70,7 +70,7 @@
                             <div class="col-md-6">
                                 {{-- <input  id="visible" type="text" class="form-control @error('visible') is-invalid @enderror" name="visible" value="{{ old('visible') }}" required autocomplete="visible" autofocus> --}}
                                 <div class="form-check form-switch">
-                                    <input value="1" name="visible" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                    <input checked value="1" name="visible" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                                 </div>
                                 @error('visible')
                                 <span class="invalid-feedback" role="alert">
@@ -93,6 +93,44 @@
             </div>
         </div>
     </div>
+    <script>
+        const name = document.getElementById('name');
+        const errN = document.getElementById('err-name');
+        const description = document.getElementById('description');
+        const errD = document.getElementById('err-descr');
+        const price = document.getElementById('price');
+        const errP = document.getElementById('err-price');
+
+        description.addEventListener('input', ()=>{
+            if(description.value.length < 1){
+                errD.innerHTML = 'Required'
+            }
+            else{
+                errD.innerHTML = ''
+            }
+        })
+
+        name.addEventListener('input', ()=>{
+            if(name.value.length < 1){
+                errN.innerHTML = 'Required'
+            }
+            else{
+                errN.innerHTML = ''
+            }
+        })
+
+        price.addEventListener('input', ()=>{
+            if(isNaN(price.value)){
+                errP.innerHTML = 'insert a valid input'
+            }
+            else if(!price.value){
+                errP.innerHTML = 'Required'
+            }
+            else {
+                errP.innerHTML = ''
+            }
+        })
+    </script>
 </div>
 
 
