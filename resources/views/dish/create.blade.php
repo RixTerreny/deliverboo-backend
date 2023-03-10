@@ -8,11 +8,13 @@
                 <div class="card-header">{{ __('Add Dish') }}</div>
 
                 <div class="card-body">
+
                     <form method="POST" action="{{ route('dish.store') }}">
                         @csrf
 
+                        <button type="button" onclick="debug()">xvz</button>
                         <div class="mb-4 row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name*') }}</label>
 
                             <div class="col-md-6">
                                 <input  id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -25,7 +27,7 @@
                             </div>
                         </div>
                         <div class="mb-4 row">
-                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description*') }}</label>
 
                             <div class="col-md-6">
                                 {{-- <input  id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus> --}}
@@ -39,7 +41,7 @@
                             </div>
                         </div>
                         <div class="mb-4 row">
-                            <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Price') }}</label>
+                            <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Price*') }}</label>
 
                             <div class="col-md-6">
                                 <input  id="price" type="text" class="form-control @error('address') is-invalid @enderror" name="price" value="{{ old('price') }}" required autocomplete="price" autofocus>
@@ -65,7 +67,7 @@
                             </div>
                         </div> --}}
                         <div class="mb-4 row">
-                            <label for="visible" class="col-md-4 col-form-label text-md-right">{{ __('Visible') }}</label>
+                            <label for="visible" class="col-md-4 col-form-label text-md-right">{{ __('Visible*') }}</label>
 
                             <div class="col-md-6">
                                 {{-- <input  id="visible" type="text" class="form-control @error('visible') is-invalid @enderror" name="visible" value="{{ old('visible') }}" required autocomplete="visible" autofocus> --}}
@@ -94,6 +96,9 @@
         </div>
     </div>
     <script>
+        let errorSubmit1 = false;
+        let errorSubmit2 = false;
+        let errorSubmit3 = false;
         const name = document.getElementById('name');
         const errN = document.getElementById('err-name');
         const description = document.getElementById('description');
@@ -103,38 +108,54 @@
 
         description.addEventListener('input', ()=>{
             if(description.value.length < 1){
-                errD.innerHTML = 'Required'
+                errD.innerHTML = 'Required';
+                errorSubmit1 = true;
             }
             else{
-                errD.innerHTML = ''
+                errD.innerHTML = '';
+                errorSubmit1 = false;
             }
         })
 
         name.addEventListener('input', ()=>{
             if(name.value.length < 1){
                 errN.innerHTML = 'Required'
+                errorSubmit2 = true;
             }
             else{
-                errN.innerHTML = ''
+                errN.innerHTML = '';
+                errorSubmit2 = false;
             }
         })
 
         price.addEventListener('input', ()=>{
-            console.log(price.value);
-            console.log(parseFloat(price.value)); 
             if(isNaN(price.value)|| parseFloat(price.value)<= 0){
-                errP.innerHTML = 'insert a valid input'
+                errP.innerHTML = 'insert a valid input';
+                errorSubmit3 = true;
             }
             else if(!price.value){
-                errP.innerHTML = 'Required'
+                errP.innerHTML = 'Required';
+                errorSubmit3 = true;
             }
             else {
-                errP.innerHTML = ''
+                errP.innerHTML = '';
+                errorSubmit3 = false;
             }
-        })
+            console.log(errorSubmit3);
+        });
+
+        const form = document.querySelector('form');
+
+        function debug(){
+            console.log(errorSubmit3);
+        }
+        form.addEventListener('submit', (event) => { 
+            if(errorSubmit3){
+                    event.preventDefault(); 
+                    alert("Inserisci tutti i campi correttamente")
+                }
+            });
     </script>
 </div>
-
-
 
 @endsection

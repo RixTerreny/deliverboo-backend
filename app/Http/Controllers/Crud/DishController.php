@@ -42,7 +42,7 @@ class DishController extends Controller
             'description' => ['required', 'string'],
             'id_restaurant' => ["nullable|exists:id,restaurants"],       
             'visible' => ['nullable', 'boolean'],       
-            'price' => ['required', 'string'],
+            'price' => ['required', 'numeric', 'min:0'],
         ]);
 
         $dish = Dish::create([
