@@ -120,7 +120,9 @@
         })
 
         price.addEventListener('input', ()=>{
-            if(isNaN(price.value)){
+            console.log(price.value);
+            console.log(parseFloat(price.value)); 
+            if(isNaN(price.value)|| parseFloat(price.value)<= 0){
                 errP.innerHTML = 'insert a valid input'
             }
             else if(!price.value){
