@@ -184,7 +184,10 @@
         const vat = document.getElementById('vat');
         const errV = document.getElementById('err-vat')
         vat.addEventListener('input', ()=>{
-            if(vat.value.length == 11){
+            if(!vat.value){
+                errV.innerHTML = 'Required'
+            }
+            else if(vat.value.length != 11){
                 errV.innerHTML = 'Insert a valid VAT'
             }
             else{
