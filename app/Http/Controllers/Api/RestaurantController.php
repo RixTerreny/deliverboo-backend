@@ -34,11 +34,12 @@ class RestaurantController extends Controller
 
  */
 
-        $restaurants = Restaurant::where('category_id', $category)
-            ->with(['categories' => function ($query) {
-                $query->select('categories.id', 'categories.name');
-            }])
-            ->get();
+        $restaurants = Restaurant::whereHas('categories', function($query) use ($category) {
+            $query->where('categories.id', $category);
+        })->get();
+        
+        
+        /* with("category.restaurant")->where("category_id",$category)->get(); */
 
         return response()->json([
             "restaurants" => $restaurants,

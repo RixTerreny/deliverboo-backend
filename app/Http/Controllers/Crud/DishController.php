@@ -15,7 +15,11 @@ class DishController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::id();
+        $restaurant = Restaurant::where("user_id", $user_id)->first();
+        $dishes = Dish::where("id_restaurant", $restaurant->id)->get();
+        /* dd($dishes); */
+        return view('dish.index',compact("dishes"));
     }
 
     /**
@@ -23,9 +27,8 @@ class DishController extends Controller
      */
     public function create()
     {
-        $dish = Dish::all();
         
-        return view('dish.create',compact("dish"));
+        return view('dish.create');
     }
 
     /**
@@ -61,7 +64,8 @@ class DishController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $dish = Dish::findOrFail($id);
+        return view('dish.show',compact("dish"));
     }
 
     /**
@@ -69,7 +73,8 @@ class DishController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dish = Dish::findOrFail($id);
+        return view('dish.edit',compact("dish"));
     }
 
     /**
@@ -77,7 +82,27 @@ class DishController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user_id = Auth::id();
+
+        $restaurant_id = Restaurant::where("user_id", $user_id)->first();
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+            'id_restaurant' => ["nullable|exists:id,restaurants"],       
+            'visible' => ['nullable', 'boolean'],       
+            'price' => ['required', 'numeric', 'min:0'],
+        ]);
+
+        $dish = Dish::findOrFail($id);
+        $dish->name = $request->name;
+        $dish->description = $request->description;
+        $dish->id_restaurant = $restaurant_id->id;
+        $dish->visible = $request->visible;
+        $dish->price = $request->price;
+        $dish->save();
+
+        return redirect()->route('dashboard' ,compact("dish"));
     }
 
     /**
@@ -85,6 +110,8 @@ class DishController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $dish = Dish::findOrFail($id);
+        $dish->delete();
+        return redirect()->route('dashboard');
     }
 }
