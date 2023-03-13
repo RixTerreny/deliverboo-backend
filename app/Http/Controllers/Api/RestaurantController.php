@@ -27,12 +27,12 @@ class RestaurantController extends Controller
 
 
 
-    public function CategorySerch($id)
+    public function CategorySerch($category)
     {
 
-        $restaurants = Restaurant::where('category_id', $id);
+       /*  $restaurants = Restaurant::where('category_id', $category);
         $restaurants->load('categories');
-        $categories = Category::all();
+        $categories = Category::all(); */
         /* $restaurants = Restaurant::where("category_id",$category)->get(); /
         /  $restaurants->load('categories', 'categories.pivot');
 
@@ -41,13 +41,14 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::whereHas('categories',  function($query) use ($category) {
             $query->where('categories.id', $category);
         })->get();
+        $restaurants->load('categories');
         
         
         /* with("category.restaurant")->where("category_id",$category)->get(); */
 
         return response()->json([
             "restaurants" => $restaurants,
-            "categories" => $categories,
+           /*  "categories" => $categories, */
         ]);
 }
 }
