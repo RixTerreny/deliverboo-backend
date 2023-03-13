@@ -14,4 +14,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get("/restaurants",[ApiRestaurantController::class,"index"]);
 
 Route::get("/dish/{id}",[ApiDishController::class,"index"]);
-Route::get("/restaurants/category/{category}",[ApiRestaurantController::class,"CategorySerch"]);
+Route::get("/restaurants/category/{id}",[ApiRestaurantController::class,"CategorySerch"]);

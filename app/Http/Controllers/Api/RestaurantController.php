@@ -24,25 +24,20 @@ class RestaurantController extends Controller
             "categories" => $categories,
         ]);
     }
-    public function CategorySerch($category)
+
+
+
+    public function CategorySerch($id)
     {
 
-
+        $restaurants = Restaurant::where('category_id', $id);
+        $restaurants->load('categories');
         $categories = Category::all();
-        /* $restaurants = Restaurant::where("category_id",$category)->get(); /
-        /  $restaurants->load('categories', 'categories.pivot');
 
- */
-
-        $restaurants = Restaurant::where('category_id', $category)
-            ->with(['categories' => function ($query) {
-                $query->select('categories.id', 'categories.name');
-            }])
-            ->get();
 
         return response()->json([
             "restaurants" => $restaurants,
             "categories" => $categories,
         ]);
-    }
+}
 }

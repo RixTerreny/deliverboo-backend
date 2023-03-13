@@ -11,7 +11,7 @@
                 <div class="card-header"> <a class="text-decoration-none" href="#">I tuoi piatti</a></div>
 
                 <div class="card-body">
-                    <a href=""><button class="btn btn-primary">Aggiungi piatto</button></a>
+                    <a href="http://127.0.0.1:8000/dish/create"><button class="btn btn-primary">Aggiungi piatto</button></a>
                 </div>
             </div>
         </div>
