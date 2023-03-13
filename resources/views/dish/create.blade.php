@@ -9,7 +9,7 @@
 
                     <div class="card-body">
 
-                        <form method="POST" action="{{ route('dish.store') }}">
+                        <form method="POST" action="{{ route('dish.store') }}" enctype="multipart/form-data">
                             @csrf
                             @if ($errors->any())
                                 <div class="alert alert-danger">
@@ -71,7 +71,8 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{-- <div class="mb-4 row">
+
+                            <div class="mb-4 row">
                             <label for="image" class="col-md-4 col-form-label text-md-right custom-file-label">{{ __('Image') }}</label>
 
                             <div class="col-md-6">
@@ -83,7 +84,8 @@
                                 </span>
                                 @enderror
                             </div>
-                        </div> --}}
+                        </div>
+
                             <div class="mb-4 row">
                                 <label for="visible"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Visible*') }}</label>

@@ -7,6 +7,8 @@ use App\Models\Dish;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
 
 class DishController extends Controller
 {
@@ -40,13 +42,19 @@ class DishController extends Controller
 
         $restaurant_id = Restaurant::where("user_id", $user_id)->first();
 
-        $request->validate([
+        $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'id_restaurant' => ["nullable|exists:id,restaurants"],       
             'visible' => ['nullable', 'boolean'],       
             'price' => ['required', 'numeric', 'min:0'],
+            'image' => ['nullable', 'image',], 
         ]);
+
+        if ($request->hasFile('image', $data)) {
+            $path = Storage::put("dish",$data["image"]);
+        }
+
 
         $dish = Dish::create([
             'name' => $request->name,
@@ -54,6 +62,7 @@ class DishController extends Controller
             'id_restaurant' => $restaurant_id->id,
             'visible' => $request->visible,
             'price' => $request->price,
+            'image' => $path ?? '',
         ]);
 
         return redirect()->route('dish.index' ,compact("dish"));
@@ -84,8 +93,10 @@ class DishController extends Controller
     public function update(Request $request, string $id)
     {
         $user_id = Auth::id();
-
         $restaurant_id = Restaurant::where("user_id", $user_id)->first();
+        $data= $request->all();
+
+        
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -93,7 +104,14 @@ class DishController extends Controller
             'id_restaurant' => ["nullable|exists:id,restaurants"],       
             'visible' => ['nullable', 'boolean'],       
             'price' => ['required', 'numeric', 'min:0'],
+            'image' => ['nullable', 'image',], 
         ]);
+
+
+        if ($request->hasFile('image', $data)) {
+            $path = Storage::put("dish",$data["image"]);
+        }
+
 
         $dish = Dish::findOrFail($id);
         $dish->name = $request->name;
@@ -101,6 +119,7 @@ class DishController extends Controller
         $dish->id_restaurant = $restaurant_id->id;
         $dish->visible = $request->visible;
         $dish->price = $request->price;
+        $dish->image = $path ?? '';
         $dish->save();
 
         return redirect()->route('dish.index' ,['dish' => $dish]);

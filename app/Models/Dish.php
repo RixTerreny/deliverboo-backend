@@ -12,7 +12,7 @@ class Dish extends Model
     use HasFactory;
     protected $fillable=[
         // fix id restaurant beccato da tomas
-        "name","description","price","visible","image","id_restaurant"
+        "name","description","price","visible","image","id_restaurant","image"
     ];
 
     public function orders(){
