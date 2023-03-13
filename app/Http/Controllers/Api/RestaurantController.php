@@ -38,7 +38,7 @@ class RestaurantController extends Controller
 
  */
 
-        $restaurants = Restaurant::whereHas('categories',  function($query) use ($category) {
+        $restaurants = Restaurant::whereHas('categories', function($query) use ($category) {
             $query->where('categories.id', $category);
         })->get();
         
