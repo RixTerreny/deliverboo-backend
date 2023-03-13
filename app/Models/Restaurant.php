@@ -11,7 +11,7 @@ class Restaurant extends Model
 {
     use HasFactory;
     protected $fillable=[
-        "name","address","vat","user_id"
+        "name","address","vat","user_id",'photo','photo'
 
     ];
     public function categories(){

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
@@ -34,7 +35,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],             
@@ -42,9 +43,14 @@ class RegisteredUserController extends Controller
             'restaurant_name' => ['required', 'string', 'max:255'],       
             'vat' => ['required', 'Numeric', "digits_between:11,11"],
             'id_category' => ["array","nullable","exists:categories,id"],
+            'photo' => ['nullable', 'image'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        if ($request->hasFile('photo', $data)) {
+            $path = Storage::put("restaurant",$data["photo"]);
+        }
 
         $user = User::create([
             'name' => $request->name,
@@ -58,6 +64,7 @@ class RegisteredUserController extends Controller
             'vat' => $request->vat,
             'address' => $request->address,
             'user_id' => $user->id,
+            'photo' => $path ?? '',
         ]);
 
 
