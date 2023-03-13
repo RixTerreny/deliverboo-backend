@@ -34,6 +34,11 @@ class RestaurantController extends Controller
         $restaurants->load('categories');
         $categories = Category::all();
 
+        $restaurants = Restaurant::where('category_id', $category)
+            ->with(['categories' => function ($query) {
+                $query->select('categories.id', 'categories.name');
+            }])
+            ->get();
 
         return response()->json([
             "restaurants" => $restaurants,

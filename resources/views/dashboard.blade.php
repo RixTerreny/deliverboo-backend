@@ -4,14 +4,16 @@
 <div class="container">
     <h2 class="fs-4 text-secondary my-4">
         Benvenuto {{ Auth::user()->name }}
+    
     </h2>
+    
     <div class="row justify-content-center">
         <div class="col">
             <div class="card">
-                <div class="card-header"> <a class="text-decoration-none" href="#">I tuoi piatti</a></div>
+                <div class="card-header"> <a class="text-decoration-none" href="{{route('dish.index')}}">I tuoi piatti</a></div>
 
                 <div class="card-body">
-                    <a href="http://127.0.0.1:8000/dish/create"><button class="btn btn-primary">Aggiungi piatto</button></a>
+                    <a href=""><button class="btn btn-primary">Aggiungi piatto</button></a>
                 </div>
             </div>
         </div>
