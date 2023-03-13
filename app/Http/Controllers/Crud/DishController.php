@@ -56,7 +56,7 @@ class DishController extends Controller
             'price' => $request->price,
         ]);
 
-        return redirect()->route('dashboard' ,compact("dish"));
+        return redirect()->route('dish.index' ,compact("dish"));
     }
 
     /**
@@ -102,7 +102,7 @@ class DishController extends Controller
         $dish->price = $request->price;
         $dish->save();
 
-        return redirect()->route('dashboard' ,compact("dish"));
+        return redirect()->route('dish.index' ,compact("dish"));
     }
 
     /**
@@ -112,6 +112,6 @@ class DishController extends Controller
     {
         $dish = Dish::findOrFail($id);
         $dish->delete();
-        return redirect()->route('dashboard');
+        return redirect()->route('dish.index');
     }
 }
