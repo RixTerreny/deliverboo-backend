@@ -9,6 +9,13 @@
                 <div class="card-tile fw-bolder">{{ $dish->name }}</div> 
                 <div class="card-body">{{ $dish->description }}</div>
                 <div class="card-body">$  {{ $dish->price }}</div>
+                <div class="card-body">Visible: 
+                    @if ($dish->visible)
+                        yes
+                        @else
+                        no
+                    @endif
+                </div>
                 
                 <div class="d-flex flex-column gap-2 ">
                     <a href="{{ route('dish.edit', $dish->id) }}" class="btn rounded-5 btn-primary">Edit</a>

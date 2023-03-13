@@ -9,8 +9,9 @@
 
                     <div class="card-body">
 
-                        <form method="POST" action="{{ route('dish.store') }}">
+                        <form method="POST" action="{{ route('dish.update',['dish'=>$dish]) }}" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" name="_method" value="PUT">
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     This data are not valid:
@@ -46,7 +47,7 @@
                                 <div class="col-md-6">
                                     {{-- <input  id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus> --}}
                                     <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror"
-                                        value="{{ $dish->description }}" rows="3"></textarea>
+                                        value="" rows="3">{{ $dish->description }}</textarea>
                                     <span id="err-descr"></span>
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">

@@ -71,10 +71,11 @@ class DishController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $dish)
     {
-        $dish = Dish::findOrFail($id);
-        return view('dish.edit',compact("dish"));
+        $dish = Dish::findOrFail($dish);
+        
+        return view('dish.edit',['dish' => $dish]);
     }
 
     /**
@@ -102,7 +103,7 @@ class DishController extends Controller
         $dish->price = $request->price;
         $dish->save();
 
-        return redirect()->route('dish.index' ,compact("dish"));
+        return redirect()->route('dish.index' ,['dish' => $dish]);
     }
 
     /**
