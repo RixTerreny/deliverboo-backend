@@ -1,22 +1,10 @@
 @extends('dashboard')
 
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <script>
-                const forms = document.querySelectorAll('form');
-    
-                forms.forEach(form => {
-                    form.addEventListener('submit', (event) => {
-                        sure = 0;
-                        if (sure==0) {
-                            event.preventDefault();
-                            alert("sicuro di voler eliminare questo elemento?")
-                            sure =1;
-                        }
-                    });
-                });
-            </script>
+            
             @foreach ($dishes as $dish)
                 <div class="col-2 py-5">
                     <div class="card text-center bg-dark p-3 text-danger">
@@ -48,6 +36,20 @@
                 </div>
             @endforeach
         </div>
-
+        <script>
+            const forms = document.querySelectorAll('form');
+        
+           
+            sure = 0;
+            forms.forEach(form => {
+                form.addEventListener('submit', (event) => {
+                    if (sure==0) {
+                        event.preventDefault();
+                        alert("sicuro di voler eliminare questo elemento?")
+                        sure =1;
+                    }
+                });
+            });
+        </script>
     </div>
 @endsection
