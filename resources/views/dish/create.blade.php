@@ -46,7 +46,7 @@
                                 <div class="col-md-6">
                                     {{-- <input  id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus> --}}
                                     <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror"
-                                        value="{{ old('description') }}" rows="3"></textarea>
+                                        value="" rows="3">{{ old('description') }}</textarea>
                                     <span id="err-descr"></span>
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
@@ -73,7 +73,7 @@
                             </div>
 
                             <div class="mb-4 row">
-                            <label for="image" class="col-md-4 col-form-label text-md-right custom-file-label">{{ __('Image') }}</label>
+                            <label for="image" class="col-md-4 col-form-label text-md-right custom-file-label">{{ __('Image*') }}</label>
 
                             <div class="col-md-6">
                                 <input  id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" required autocomplete="restaurant_name" autofocus>
