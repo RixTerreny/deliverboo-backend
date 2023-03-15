@@ -58,4 +58,3 @@ class RestaurantController extends Controller
         ]);
          */
 }
-}
