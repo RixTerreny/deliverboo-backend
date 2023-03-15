@@ -25,18 +25,24 @@ class RestaurantController extends Controller
         ]);
     }
 
+    public function CategorySerch($categoryArray)
+{
+    $restaurants = Restaurant::whereHas('categories', function($query) use ($categoryArray) {
+        $query->whereIn('categories.id', $categoryArray);
+    }, '=', count($categoryArray))->get();
 
+    $restaurants->load('categories');
 
-    public function CategorySerch($category)
+    return response()->json([
+        "restaurants" => $restaurants,
+    ]);
+}
+
+    /* public function CategorySerch($category)
     {
 
-       /*  $restaurants = Restaurant::where('category_id', $category);
-        $restaurants->load('categories');
-        $categories = Category::all(); */
-        /* $restaurants = Restaurant::where("category_id",$category)->get(); /
-        /  $restaurants->load('categories', 'categories.pivot');
+      
 
- */
 
         $restaurants = Restaurant::whereHas('categories', function($query) use ($category) {
             $query->where('categories.id', $category);
@@ -44,11 +50,12 @@ class RestaurantController extends Controller
         $restaurants->load('categories');
         
         
-        /* with("category.restaurant")->where("category_id",$category)->get(); */
+       
 
         return response()->json([
             "restaurants" => $restaurants,
-           /*  "categories" => $categories, */
+
         ]);
+         */
 }
 }
