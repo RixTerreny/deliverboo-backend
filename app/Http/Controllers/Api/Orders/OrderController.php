@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Orders;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Orders\OrderRequest;
+use App\Models\Dish;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
 
@@ -20,8 +21,9 @@ class OrderController extends Controller
     }
 
     public function makePayment(OrderRequest $request, Gateway $gateway){
+        $dish = Dish::find( $request->Dish);
         $result = $gateway->transaction()->sale([
-            'amount' => $request->amount,
+            'amount' => $dish->price,
             'paymentMethodNonce'=>$request->token,
             'options' => [
                 'submitForSettlement' => true
