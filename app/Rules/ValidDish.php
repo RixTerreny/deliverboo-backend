@@ -17,7 +17,7 @@ class ValidDish implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if(Dish::find($value)){
-            return true;
+            return true ;
     
         };
         $fail = "dish not found";
