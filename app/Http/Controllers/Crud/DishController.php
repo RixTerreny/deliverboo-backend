@@ -119,7 +119,7 @@ class DishController extends Controller
         $dish->id_restaurant = $restaurant_id->id;
         $dish->visible = $request->visible;
         $dish->price = $request->price;
-        $dish->image = $path ?? '';
+        $dish->image = $path ?? $dish->image;
         $dish->save();
 
         return redirect()->route('dish.index' ,['dish' => $dish]);
