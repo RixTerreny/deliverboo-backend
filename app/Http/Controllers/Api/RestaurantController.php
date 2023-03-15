@@ -9,7 +9,7 @@ use App\Models\Category;
 
 use function Pest\Laravel\get;
 
-class RestaurantController extends  Controller
+class RestaurantController extends Controller
 {
     public function index()
     {
