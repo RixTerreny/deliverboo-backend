@@ -56,4 +56,14 @@ class OrderController extends Controller
             return response()->json($data, 401);
         }
     }
+    /* public function index($id){
+        $orders = Dish::where('id_restaurant', $id)->get();
+        $restaurant = Restaurant::where('id', $id)->get();
+        $jojo =Dish::all();
+        return response()->json([
+            "dishes" => $dishes,
+            "restaurant" => $restaurant,
+            DishResource::collection($jojo),
+        ]);
+    } */
 }
