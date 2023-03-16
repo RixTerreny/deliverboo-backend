@@ -10,18 +10,29 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function generate(Request $request, Gateway $gateway){
+    public function generate(Request $request, Gateway $gateway)
+    {
         $token = $gateway->clientToken()->generate();
-        $data =[
+        $data = [
             'success' => true,
             'token' => $token,
         ];
 
-        return response()->json($data,200);
+        return response()->json($data, 200);
     }
 
-    public function makePayment(OrderRequest $request, Gateway  $gateway){
-        $dish = Dish::find($request->dish);
+    public function makePayment(OrderRequest $request, Gateway  $gateway)
+    {
+        // $dish = Dish::find($request->dish);
+        $totalAmount = 0;
+        $dishes = [];
+        dd($request->dish);
+        foreach ($request->dishes as $dishId) {
+            $dish = Dish::find($dishId);
+            $totalAmount += $dish->price;
+            $dishes[] = $dish;
+        }
+
         $result = $gateway->transaction()->sale([
             'amount' => $dish->price,
             'paymentMethodNonce'=>$request->token,
@@ -30,19 +41,19 @@ class OrderController extends Controller
             ]
         ]);
 
+
         if ($result->success) {
-            $data =[
+            $data = [
                 'success' => true,
                 'message' => 'Transaction done'
             ];
-            return response()->json($data,200);
-        }
-        else{
-            $data =[
+            return response()->json($data, 200);
+        } else {
+            $data = [
                 'success' => false,
                 'message' => 'Transaction denied'
             ];
-            return response()->json($data,401);
+            return response()->json($data, 401);
         }
     }
 }

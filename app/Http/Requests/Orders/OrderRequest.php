@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Orders;
 
+use App\Models\Dish;
 use App\Rules\ValidDish;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,10 +26,23 @@ class OrderRequest extends FormRequest
         return [
             'token' => 'required',
 
-            'dish' => [
+            // 'dish' => [
+            //     'required',
+            //     new ValidDish()
+            // ]
+            'dishes' => [
                 'required',
-                new ValidDish()
+                'array',
+                function ($attribute, $value, $fail) {
+                    foreach ($value as $dishId) {
+                        if (!ctype_digit($dishId) || !Dish::find($dishId)) {
+                            $fail("The selected $attribute is invalid.");
+                            break;
+                        }
+                    }
+                }
             ]
+            
         ]; 
     }
 }
