@@ -21,8 +21,9 @@ class OrderController extends Controller
     }
 
     public function makePayment(OrderRequest $request, Gateway  $gateway){
+        $dish = Dish::find($request->dish);
         $result = $gateway->transaction()->sale([
-            'amount' => $request->amount,
+            'amount' => $dish->price,
             'paymentMethodNonce'=>$request->token,
             'options' => [
                 'submitForSettlement' => true

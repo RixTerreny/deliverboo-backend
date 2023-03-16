@@ -24,7 +24,11 @@ class OrderRequest extends FormRequest
     {
         return [
             'token' => 'required',
-            'amount' => 'required',
+
+            'dish' => [
+                'required',
+                new ValidDish()
+            ]
         ]; 
     }
 }
