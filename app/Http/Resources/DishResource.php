@@ -12,8 +12,15 @@ class DishResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-    public function toArray(Request $request): array
+    public function toArray($request): array
     {
-        return parent::toArray($request);
+        return [
+            'id'=> $this->id,
+            'name'=> $this->name,
+            'description'=> $this->description,
+            'image'=> $this->image,
+            'price'=> $this->price,
+            'id_restaurant'=> $this->id_restaurant,
+        ];
     }
 }

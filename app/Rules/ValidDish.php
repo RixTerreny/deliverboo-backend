@@ -2,26 +2,43 @@
 
 namespace App\Rules;
 
-
 use App\Models\Dish;
-use Closure;
-use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Contracts\Validation\Rule;
 
-class ValidDish implements ValidationRule
+class ValidDish implements Rule
 {
-    /**
-     * Run the validation rule.
+    /* Create a new rule instance.
      *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @return void
      */
-    public function validate(string $attribute, mixed $value, Closure $fail): void
+    public function __construct()
     {
-        if(Dish::find($value)){
-            return true ;
-    
-        };
-        $fail = "dish not found";
-        return($fail);
+        //
+    }
+
+    /* Determine if the validation rule passes.
+     *
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @return bool
+     */
+    public function passes($attribute, $value)
+    {
+        $dish = Dish::find($value);
+        if ($dish) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * Get the validation error message.
+     *
+     * @return string
+     */
+    public function message()
+    {
+        return 'product does not exist';
     }
 }
- 

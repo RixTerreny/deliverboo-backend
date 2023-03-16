@@ -19,4 +19,4 @@ Route::get("/restaurants/category/{category}",[ApiRestaurantController::class,"C
 
 // api pagamento
 Route::get('order/generate',[OrderController::class,"generate"]);
-Route::post('order/make/payment',[OrderController::class,"makePayment"]);
+Route::post('order/make/payment',[OrderController::class,"makePayment"]); 

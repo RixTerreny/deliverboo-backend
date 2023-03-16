@@ -21,8 +21,9 @@ class OrderController extends Controller
     }
 
     public function makePayment(OrderRequest $request, Gateway  $gateway){
+        $dish = Dish::find($request->dish);
         $result = $gateway->transaction()->sale([
-            'amount' => $request->amount,
+            'amount' => $dish->price,
             'paymentMethodNonce'=>$request->token,
             'options' => [
                 'submitForSettlement' => true
@@ -44,4 +45,14 @@ class OrderController extends Controller
             return response()->json($data,401);
         }
     }
+    /* public function index($id){
+        $orders = Dish::where('id_restaurant', $id)->get();
+        $restaurant = Restaurant::where('id', $id)->get();
+        $jojo =Dish::all();
+        return response()->json([
+            "dishes" => $dishes,
+            "restaurant" => $restaurant,
+            DishResource::collection($jojo),
+        ]);
+    } */
 }

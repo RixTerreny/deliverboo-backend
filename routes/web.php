@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Orders\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\crud\UserController;
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('dish', DishController::class); 
     Route::resource('restaurants', RestaurantController::class);
+    Route::resource('orders', OrderController::class);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
