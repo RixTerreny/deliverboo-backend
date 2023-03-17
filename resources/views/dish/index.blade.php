@@ -6,8 +6,8 @@
         <div class="row justify-content-center">
             
             @foreach ($dishes as $dish)
-                <div class="col-lg-4 col-sm-12 py-5">
-                    <div class="card text-center p-3">
+                <div class="col-lg-4 col-sm-12 py-5" >
+                    <div class="card text-center p-3" style="min-height:552px">
                         @if ($dish->image)
                             <img src="{{ asset('/storage/' . $dish->image) }}" alt=""
                                 class="card-img-top img-fluid" style="">
