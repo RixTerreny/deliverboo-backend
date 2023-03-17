@@ -23,15 +23,7 @@ class OrderController extends Controller
 
     public function makePayment(OrderRequest $request, Gateway  $gateway)
     {
-        // $dish = Dish::find($request->dish);
-        $totalAmount = 0;
-        $dishes = [];
-        dd($request->dish);
-        foreach ($request->dishes as $dishId) {
-            $dish = Dish::find($dishId);
-            $totalAmount += $dish->price;
-            $dishes[] = $dish;
-        }
+        $dish = Dish::find($request->dish);
 
         $result = $gateway->transaction()->sale([
             'amount' => $dish->price,
@@ -56,14 +48,4 @@ class OrderController extends Controller
             return response()->json($data, 401);
         }
     }
-    /* public function index($id){
-        $orders = Dish::where('id_restaurant', $id)->get();
-        $restaurant = Restaurant::where('id', $id)->get();
-        $jojo =Dish::all();
-        return response()->json([
-            "dishes" => $dishes,
-            "restaurant" => $restaurant,
-            DishResource::collection($jojo),
-        ]);
-    } */
 }

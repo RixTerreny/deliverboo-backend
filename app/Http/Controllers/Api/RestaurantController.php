@@ -25,7 +25,7 @@ class RestaurantController extends Controller
         ]);
     }
 
-   /*  public function CategorySerch($categoryArray)
+/*  public function CategorySerch($categoryArray)
 {
     $restaurants = Restaurant::whereHas('categories', function($query) use ($categoryArray) {
         $query->whereIn('categories.id', $categoryArray);
