@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             
             @foreach ($dishes as $dish)
-                <div class="col-4 py-5">
+                <div class="col-lg-4 col-sm-12 py-5">
                     <div class="card text-center p-3">
                         @if ($dish->image)
                             <img src="{{ asset('/storage/' . $dish->image) }}" alt=""
@@ -25,7 +25,6 @@
 
                         <div class="d-flex justify-content-around">
                             <a href="{{ route('dish.edit', $dish->id) }}"><button class="btn rounded-5 btn-primary">Edit</button></a>
-                            <a href="{{ route('dish.show', $dish->id) }}"><button class="btn rounded-5 btn-info">Details</button></a>
                             <form action="{{ route('dish.destroy', $dish->id) }}" method="POST">
                                 @csrf()
                                 @method('delete')

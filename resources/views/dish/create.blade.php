@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mt-4">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="w-100 col-md-8" style="max-width: 800px">
                 <div class="card">
                     <div class="card-header">{{ __('Add Dish') }}</div>
 
@@ -88,7 +88,7 @@
 
                             <div class="mb-4 row">
                                 <label for="visible"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Visible*') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Visible') }}</label>
 
                                 <div class="col-md-6">
                                     {{-- <input  id="visible" type="text" class="form-control @error('visible') is-invalid @enderror" name="visible" value="{{ old('visible') }}" required autocomplete="visible" autofocus> --}}
