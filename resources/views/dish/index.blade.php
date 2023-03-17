@@ -23,9 +23,9 @@
                             @endif
                         </div>
 
-                        <div class="d-flex justify-content-around">
-                            <a href="{{ route('dish.edit', $dish->id) }}"><button class="btn rounded-5 btn-primary">Edit</button></a>
-                            <a href="{{ route('dish.show', $dish->id) }}"><button class="btn rounded-5 btn-info"><i class="fa-solid fa-magnifying-glass"></i></button></a>
+                        <div class="d-flex flex-column gap-2 ">
+                            <a href="{{ route('dish.edit', $dish->id) }}" class="btn rounded-5 btn-primary">Edit</a>
+                            <a href="{{ route('dish.show', $dish->id) }}" class="btn rounded-5 btn-info">Details</a>
                             <form action="{{ route('dish.destroy', $dish->id) }}" method="POST">
                                 @csrf()
                                 @method('delete')
