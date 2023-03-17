@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="jumbotron p-5 mb-4 rounded-3">
+<div class="jumbotron p-5 mb-4 rounded-3 bruh h-100">
     <div class="container py-5 text-center">
         <div class="logo_laravel">
             {{-- <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-25"> --}}
@@ -11,7 +11,7 @@
             </svg> --}}
 
         </div>
-        <img src="{{ URL::asset('/images/deliveboo.png') }}" alt="">
+        {{-- <img src="{{ URL::asset('/images/deliveboo.png') }}" alt=""> --}}
         <h1 class="display-5 fw-bold">
             Welcome to DeliverBoo Manage Database
         </h1>
@@ -19,6 +19,15 @@
         <div class="justify-content-center ">
             <p class="fs-4">In this Section you can Register your Restaurant and Manage your Activity.</p>
         </div>
+
+        <div class="content">
+            <div class="sun">
+                <div class="shadow2"></div>
+            </div>
+            <h3 class="mt-4">Delivery H24</h3>
+        </div>
+        
+
 
         {{-- <a href="https://packagist.org/packages/pacificdev/laravel_9_preset" class="btn btn-primary btn-lg" type="button">Documentation</a> --}}
     </div>
