@@ -6,15 +6,15 @@
         <div class="row justify-content-center">
             
             @foreach ($dishes as $dish)
-                <div class="col-2 py-5">
-                    <div class="card text-center bg-dark p-3 text-danger">
+                <div class="col-4 py-5">
+                    <div class="card text-center p-3">
                         @if ($dish->image)
                             <img src="{{ asset('/storage/' . $dish->image) }}" alt=""
                                 class="card-img-top img-fluid" style="">
                         @endif
-                        <div class="card-tile fw-bolder">{{ $dish->name }}</div>
-                        <div class="card-body">{{ $dish->description }}</div>
-                        <div class="card-body">$ {{ $dish->price }}</div>
+                        <div class="card-tile"><h4>{{ $dish->name }}</h4></div>
+                        <div class="card-body">Description: {{ $dish->description }}</div>
+                        <div class="card-body">Price: ${{ $dish->price }}</div>
                         <div class="card-body">Visible:
                             @if ($dish->visible)
                                 yes
@@ -23,9 +23,9 @@
                             @endif
                         </div>
 
-                        <div class="d-flex flex-column gap-2 ">
-                            <a href="{{ route('dish.edit', $dish->id) }}" class="btn rounded-5 btn-primary">Edit</a>
-                            <a href="{{ route('dish.show', $dish->id) }}" class="btn rounded-5 btn-info">dettagli</a>
+                        <div class="d-flex justify-content-around">
+                            <a href="{{ route('dish.edit', $dish->id) }}"><button class="btn rounded-5 btn-primary">Edit</button></a>
+                            <a href="{{ route('dish.show', $dish->id) }}"><button class="btn rounded-5 btn-info">Details</button></a>
                             <form action="{{ route('dish.destroy', $dish->id) }}" method="POST">
                                 @csrf()
                                 @method('delete')
