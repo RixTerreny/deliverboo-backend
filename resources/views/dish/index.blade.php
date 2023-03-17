@@ -25,7 +25,7 @@
 
                         <div class="d-flex justify-content-around">
                             <a href="{{ route('dish.edit', $dish->id) }}"><button class="btn rounded-5 btn-primary">Edit</button></a>
-                            <a href="{{ route('dish.show', $dish->id) }}"><button class="btn rounded-5 btn-info">Details</button></a>
+                            <a href="{{ route('dish.show', $dish->id) }}"><button class="btn rounded-5 btn-info"><i class="fa-solid fa-magnifying-glass"></i></button></a>
                             <form action="{{ route('dish.destroy', $dish->id) }}" method="POST">
                                 @csrf()
                                 @method('delete')
