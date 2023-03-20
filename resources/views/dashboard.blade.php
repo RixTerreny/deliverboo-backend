@@ -11,7 +11,7 @@
         <div class="row justify-content-center">
             <div class="col">
                 <div class="card">
-                    <div class="card-header"> <a class="text-decoration-none">Your Dishes</a></div>
+                    <div class="card-header"> <a class="text-decoration-none">Dishes</a></div>
 
                     <div class="card-body">
                         <a href="{{ route('dish.create') }}"><button class="btn btn-primary">Add Plate</button></a>
@@ -23,10 +23,10 @@
         <div class="row justify-content-center pt-2 ">
             <div class="col">
                 <div class="card">
-                    <div class="card-header"> <a class="text-decoration-none" href="#">Orders Received</a></div>
+                    <div class="card-header"> <a class="text-decoration-none" href="#">Orders</a></div>
 
                     <div class="card-body">
-                        <a href=""><button class="btn btn-primary">Order Statistics</button></a>
+                        <a href="{{ route('orders.index') }}"><button class="btn btn-primary">Order Received</button></a>
                     </div>
                 </div>
             </div>

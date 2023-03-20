@@ -26,20 +26,20 @@
     box-shadow: none;
     top: -2px;
     left: 0px;
-    animation: moveshadow 10s infinite 1.7s;
+    animation: moveshadow 10s infinite 1.5s ;
 }
 
 @keyframes moveshadow{
     0%{
-        transform: translateX(170px);
+        transform: translateX(175px);
         background-color: #fff;
     }
     50%{
-        transform: translateX(-5px);
+        transform: translateX(-4px);
         background-color: #000;
     }
     100%{
-        transform: translateX(-190px);
+        transform: translateX(-195px);
         background-color: #fff;
     }
 }

@@ -24,7 +24,8 @@
             <div class="sun">
                 <div class="shadow2"></div>
             </div>
-            <h3 class="mt-4">Delivery H24</h3>
+            <h3 class="mt-4">Database</h3>
+            <h3 >service 24h</h3>
         </div>
         
 

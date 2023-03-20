@@ -4,49 +4,37 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            
-            @foreach ($dishes as $dish)
+
+            @foreach ($orders as $order)
                 <div class="col-2 py-5">
                     <div class="card text-center bg-dark p-3 text-danger">
-                        @if ($dish->image)
-                            <img src="{{ asset('/storage/' . $dish->image) }}" alt=""
-                                class="card-img-top img-fluid" style="">
-                        @endif
-                        <div class="card-tile fw-bolder">{{ $dish->name }}</div>
-                        <div class="card-body">{{ $dish->description }}</div>
-                        <div class="card-body">$ {{ $dish->price }}</div>
-                        <div class="card-body">Visible:
-                            @if ($dish->visible)
-                                yes
-                            @else
-                                no
-                            @endif
-                        </div>
-
-                        <div class="d-flex flex-column gap-2 ">
-                            <a href="{{ route('dish.edit', $dish->id) }}" class="btn rounded-5 btn-primary">Edit</a>
-                            <a href="{{ route('dish.show', $dish->id) }}" class="btn rounded-5 btn-info">dettagli</a>
-                            <form action="{{ route('dish.destroy', $dish->id) }}" method="POST">
-                                @csrf()
-                                @method('delete')
-                                <button class="btn rounded-5 btn-danger">Delete</button>
-                            </form>
-                        </div>
+                        <div class="card-tile fw-bolder">{{ $order->customer_name . ' ' . $order->customer_lastname }}</div>
+                        <div class="mt-3 text-white">address: </div>
+                        <div class="">{{ $order->customer_delivery_address }}</div>
+                        <div class="mt-3 text-white">phone number: </div>
+                        <div class="">{{ $order->customer_phone }}</div>
+                        <div class="mt-3 text-white">order date: </div>
+                        <div class="">{{ $order->date }}</div>
+                        <div class="mt-3 text-white">total: </div>
+                        <div class="mb-3">$ {{ $order->total }}</div>
+                        {{-- @foreach ($order->dishes as $dish)
+                            <li>{{ $dish->name }}</li>
+                        @endforeach --}}
                     </div>
                 </div>
             @endforeach
         </div>
         <script>
             const forms = document.querySelectorAll('form');
-        
-           
+
+
             sure = 0;
             forms.forEach(form => {
                 form.addEventListener('submit', (event) => {
-                    if (sure==0) {
+                    if (sure == 0) {
                         event.preventDefault();
                         alert("sicuro di voler eliminare questo elemento?")
-                        sure =1;
+                        sure = 1;
                     }
                 });
             });

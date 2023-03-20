@@ -12,44 +12,24 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 
-class DishController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-       $user_id = Auth::id();
-       $restaurant = Restaurant::where("user_id", $user_id)->first();
-
-
-
-       $dishes = Dish::where("id_restaurant", $restaurant->id)->get();
-
-
-       $orders = collect();
-       foreach ($dishes as $dish) {
+    $user_id = Auth::id();
+    $restaurant = Restaurant::where("user_id", $user_id)->first();
+    $dishes = Dish::where("id_restaurant", $restaurant->id)->get();
+    $orders = collect();
+    foreach ($dishes as $dish) {
         $orders = $orders->merge($dish->orders);
+        // $orders = $orders->merge($dish->orders->with('dishes'));
             }
             /* tolgo i duplicati */
-     $orders = $orders->unique('id');
-     $orders = $orders->orderBy('date','DESC');
-
-    return $orders;
-    }
-    
-
-       
-
-   
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        
-       
+    $orders = $orders->unique('id')->sortByDesc('date');
+    return view('order.index',compact("orders"));
     }
 
     /**
@@ -57,7 +37,7 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
+        $request->validate([
             'date' => ['required', 'string', 'max:255'],
             'total' => ['required', 'string', 'max:255'],
             'customer_delivery_address' => ['required', 'string', 'max:255'],             
@@ -70,18 +50,15 @@ class DishController extends Controller
         ]);
         $order = Order::create([
             'date' => $request->date,
-           'total' => $request->total,
-           'customer_delivery_address' => $request->customer_delivery_address,
+            'total' => $request->total,
+            'customer_delivery_address' => $request->customer_delivery_address,
             'customer_phone' => $request->customer_phone,
-           'customer_name' => $request->customer_name,
-           'customer_lastname' => $request->customer_lastname,
-           'quantity' => $request->quantity,
-           
-           
+            'customer_name' => $request->customer_name,
+            'customer_lastname' => $request->customer_lastname,
+            'quantity' => $request->quantity,
         ]);
         $order->dish()->attach($request->id_dish);
         return redirect()->route('dish.index' ,compact("dish"));
-        
     }
 
     /**
@@ -89,7 +66,7 @@ class DishController extends Controller
      */
     public function show(string $id)
     {
-      
+    
     }
 
     /**
@@ -97,7 +74,7 @@ class DishController extends Controller
      */
     public function edit(string $dish)
     {
-       
+    
     }
 
     /**
@@ -105,10 +82,6 @@ class DishController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
-        
-
-     
     }
 
     /**
@@ -116,6 +89,5 @@ class DishController extends Controller
      */
     public function destroy(string $id)
     {
-      
     }
 }

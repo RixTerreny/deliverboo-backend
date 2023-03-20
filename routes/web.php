@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\Orders\OrderController;
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\crud\UserController;
 use App\Http\Controllers\Auth\crud\RestaurantController;
 use App\Http\Controllers\Crud\DishController;
+use App\Http\Controllers\Crud\OrderController;
 
 /*
 |--------------------------------------------------------------------------
