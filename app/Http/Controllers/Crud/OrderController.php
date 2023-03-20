@@ -28,7 +28,7 @@ class OrderController extends Controller
         // $orders = $orders->merge($dish->orders->with('dishes'));
             }
             /* tolgo i duplicati */
-    $orders = $orders->unique('id')->sortByDesc('date');
+    $orders = $orders->unique('id')->sortBy('date');
     return view('order.index',compact("orders"));
     }
 
