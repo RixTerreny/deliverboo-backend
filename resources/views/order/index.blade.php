@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
 
             @foreach ($orders as $order)
-                <div class="col-2 py-5">
+                <div class="col-sm-8 col-md-6 col-lg-2  my-5">
                     <div class="card text-center bg-dark p-3 text-danger">
                         <div class="card-tile fw-bolder">{{ $order->customer_name . ' ' . $order->customer_lastname }}</div>
                         <div class="mt-3 text-white">address: </div>
