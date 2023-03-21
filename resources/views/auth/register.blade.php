@@ -173,8 +173,8 @@
                                 </div>
                             @endforeach
                             <div  id="err-k"></div>
-                            <div class="mb-4 row mb-0">
-                                <div class="col-md-6 offset-md-4">
+                            <div class="mb-4  mb-0 ">
+                                <div class=" d-flex justify-content-center mt-3 text-center m-auto offset-md-4">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Register') }}
                                     </button>

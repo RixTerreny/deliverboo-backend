@@ -3,11 +3,12 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center"> 
+            <div class="text-white bg-danger  mt-4 p-0 text-center fs-5" id="gg"></div>
             
             @foreach ($dishes as $dish)
-                <div class="col-lg-4 col-sm-12 py-5" >
-                    <div class="card text-center p-3" style="min-height:552px">
+                <div class="col-lg-4 col-sm-12 pb-5 pt-3" >
+                    <div class="card text-center p-3 " style="min-height:552px">
                         @if ($dish->image)
                             <img src="{{ asset('/storage/' . $dish->image) }}" alt=""
                                 class="card-img-top img-fluid" style="">
@@ -37,6 +38,7 @@
         </div>
         <script>
             const forms = document.querySelectorAll('form');
+            const err = document.getElementById('gg');
         
            
             sure = 0;
@@ -44,7 +46,7 @@
                 form.addEventListener('submit', (event) => {
                     if (sure==0) {
                         event.preventDefault();
-                        alert("sicuro di voler eliminare questo elemento?")
+                        err.innerHTML="If you are sure you want to delete this item, press delete again?"
                         sure =1;
                     }
                 });
