@@ -32,12 +32,17 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 ## Start The Project
 
 To start the project: 
-1) **clone the repository on your macine**.
+1) Clone the repository on your macine.
 
 2) Then install composer:
 ```
 composer install
 ```
+3) Then install node:
+```
+npm install
+```
+4) Create a .env file and put in there your db connection's info.
 
 ## License
 
