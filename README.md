@@ -44,7 +44,7 @@ npm install
 ```
 4) Create a .env file and put in there your db connection's info.
 
-5) Run the migrations to generate the db and the seeder(optional) if you want some data to start with.
+5) Run the migrations to generate the db and the seeder (optional), if you want some data to start with.
 
 ## License
 
