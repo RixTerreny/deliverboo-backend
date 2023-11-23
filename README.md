@@ -92,10 +92,10 @@ If you have a suggestion that would make this better, please fork the repo and c
    - Go to the original repository and click on the "New Pull Request" button.
    - Select your feature branch and provide a descriptive title and summary.
 
-### Issues
+### Report Issues 
 If you have any issues or suggestions, please open an issue with the "enhancement" tag.
 
-### Star the Project
+#### Star the Project
 Don't forget to give the project a star if you find it helpful or interesting!
 
 Thanks again from the team for your contribution!
