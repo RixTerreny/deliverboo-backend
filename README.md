@@ -1,4 +1,4 @@
-<p align="center"> <h1>Deliverboo</h1></p>
+<h1 align="center">Deliverboo</h1>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -49,6 +49,47 @@ npm install
 4) Create a .env file and put in there your db connection's info.
 
 5) Run the migrations to generate the db and the seeder (optional), if you want some data to start with.
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement". Don't forget to give the project a star! Thanks again!
+
+### How to Contribute
+
+1. **Fork the Project**
+   - Click on the "Fork" button at the top right corner of the repository.
+
+2. **Create your Feature Branch**
+   - Switch to a new branch for your feature with the following command:
+     ```bash
+     git checkout -b feature/AmazingFeature
+     ```
+
+3. **Commit your Changes**
+   - Save your changes with a descriptive commit message:
+     ```bash
+     git commit -m 'Add some AmazingFeature'
+     ```
+
+4. **Push to the Branch**
+   - Push your changes to your forked repository:
+     ```bash
+     git push origin feature/AmazingFeature
+     ```
+
+5. **Open a Pull Request**
+   - Go to the original repository and click on the "New Pull Request" button.
+   - Select your feature branch and provide a descriptive title and summary.
+
+### Issues
+If you have any issues or suggestions, please open an issue with the "enhancement" tag.
+
+### Star the Project
+Don't forget to give the project a star if you find it helpful or interesting!
+
+Thanks again from the team for your contribution!
 
 ## License
 
