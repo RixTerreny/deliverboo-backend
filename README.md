@@ -1,4 +1,4 @@
-<p align="center">Deliverboo</p>
+<p align="center"> # Deliverboo</p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -23,22 +23,13 @@ Deliverboo was built during Codework's bootcamp as a group project, Notion and S
 ### Backend
 - **PHP**: general-purpose scripting language for server-side development.
 - **Laravel**: PHP web application framework.
- 
-
-### Frameworks
-
 
 ### Tools and Package Managers
 
 - **Git**: Version control system for tracking changes in the code.
 - **npm**: Node Package Manager for managing project dependencies.
 
-## Other
-
-- **RESTful API**: Architectural style for designing networked applications.
-- **JSON Web Tokens (JWT)**: Compact, URL-safe means of representing claims between two parties.
-
-## Laravel
+## About Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
