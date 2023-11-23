@@ -23,15 +23,17 @@ Deliverboo was built during Codework's bootcamp as a group project, Notion and S
 ### Backend
 - **PHP**: general-purpose scripting language for server-side development.
 - **Laravel**: PHP web application framework.
+- **phpMyAdmin**: managment system for MySQL server.
 
 ### Tools and Package Managers
 
 - **Git**: Version control system for tracking changes in the code.
 - **npm**: Node Package Manager for managing project dependencies.
 
-## About Laravel
+### About Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+
 
 ## Getting Strarted
 
@@ -49,6 +51,13 @@ npm install
 4) Create a .env file and put in there your db connection's info.
 
 5) Run the migrations to generate the db and the seeder (optional), if you want some data to start with.
+
+
+## Usage
+
+1. The managment system requires an authentication of the user, hence you need to register yourself and your restaurant.
+2. After that you will have access to the dashboard where you can add or remove a dish.
+3. In the dish you can manage the ingredients contained in your meal and other various aspect of the food, like price, image and so on.
 
 ## Contributing
 
